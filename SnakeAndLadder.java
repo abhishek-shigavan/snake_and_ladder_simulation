@@ -1,14 +1,18 @@
 /**
- * SnakeAndLadder 
+ * SnakeAndLadder
  * 
  * Program to roll dice and get result.
  * Also checking the playing condition.
  * i.e No Play / Ladder / Snake
  * Rolling the dice till exact winning condition is reached.
+ * Counting No of games to reach winning condition.
+ * Displaying player position after every dice roll.
  * 
  * 
  * @author    Abhishek Shigavan
  */
+package snakeandladdersimulation;
+
 public class SnakeAndLadder {
 
 	//constant... Playing Conditions of Game
@@ -23,10 +27,14 @@ public class SnakeAndLadder {
 		//initial player position
 		int playerPosition=0;
 		int diceNumber=0;
+		int gameCounter=0;
+		
 		System.out.println("Welocme to Snake and Ladder Game...!!!");
 		
 		while(playerPosition <= WIN_POSITION) {
 
+			gameCounter++;
+			
 			if(playerPosition >= START_POSITION ) {
 				diceNumber = (int)(Math.floor(Math.random() * 10) % 6)+1;
 		
@@ -47,7 +55,7 @@ public class SnakeAndLadder {
 				playerPosition=START_POSITION; 
 			}
 			
-			
+			System.out.println("Player Position : "+playerPosition);
 			//checking for exact win position
 			if(playerPosition > WIN_POSITION) {
 				playerPosition -=diceNumber; //again going to previous position
@@ -57,5 +65,7 @@ public class SnakeAndLadder {
 			}
 		}
 		System.out.println("Player reach at "+playerPosition+" We got winner");
+		System.out.println("Total Number of Game played :"+gameCounter);
 	}
 }
+
