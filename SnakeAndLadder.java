@@ -1,10 +1,10 @@
 /**
  * SnakeAndLadder 
- *
+ * 
  * Program to roll dice and get result.
  * Also checking the playing condition.
  * i.e No Play / Ladder / Snake
- * Rolling the dice till winning condition is reached.
+ * Rolling the dice till exact winning condition is reached.
  * 
  * 
  * @author    Abhishek Shigavan
@@ -22,13 +22,13 @@ public class SnakeAndLadder {
 
 		//initial player position
 		int playerPosition=0;
-		
+		int diceNumber=0;
 		System.out.println("Welocme to Snake and Ladder Game...!!!");
 		
-		while(playerPosition < WIN_POSITION) {
+		while(playerPosition <= WIN_POSITION) {
 
 			if(playerPosition >= START_POSITION ) {
-				int diceNumber = (int)(Math.floor(Math.random() * 10) % 6)+1;
+				diceNumber = (int)(Math.floor(Math.random() * 10) % 6)+1;
 		
 				int playingOption = (int)(Math.floor(Math.random() * 10) % 3);
 		
@@ -46,8 +46,16 @@ public class SnakeAndLadder {
 				//if player position is less than 0 (i.e START_POSITION) then again start from 0
 				playerPosition=START_POSITION; 
 			}
+			
+			
+			//checking for exact win position
+			if(playerPosition > WIN_POSITION) {
+				playerPosition -=diceNumber; //again going to previous position
+			}
+			else if(playerPosition == WIN_POSITION) {
+				break;
+			}
 		}
 		System.out.println("Player reach at "+playerPosition+" We got winner");
 	}
 }
-
